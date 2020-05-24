@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<style type="text/css">
+
+/* Header/Logo Title */
+.header {
+  padding: 50px;
+  text-align: center;
+  background: blue;
+  color: white;
+  font-size: 30px;
+}
+ .container {   
+        justify-content: center;
+        align-items: center
+}
+</style>
+</head>
+<!-- Se estiver usando bootstrap, coloque o CSS do Locastyle logo após a sua chamada -->
+<link rel="stylesheet" type="text/css"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+<body>
+	<div class="header">
+	<h1>Eleições 2020</h1>
+	<br>
+	</div>
+	
+	 <div class="container">
+	<h3>Selecione abaixo o estado, cidade e local da sua votação</h3>
+	<hr>
+	
+	<div class="form-group col-lg-4">
+		<label>Estado:</label> 
+		<select class="form-control" name="estado">
+		<option>Selecione</option>
+        <option th:each="estado : ${estados}"
+                th:value="${estado.id}"
+                th:text="${estado.nome}" />
+    </select>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="form-group col-lg-4">
+		<label>Cidade:</label> 
+		<select class="form-control" name="cidade">
+		<option>Selecione</option>
+        <option th:each="cidade : ${cidades}"
+                th:value="${cidade.id}"
+                th:text="${cidade.nome}" />
+    </select>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div class="form-group col-lg-4">
+		<label>Local:</label> <select class="form-control">
+			<option>Selecione</option>
+			<option>Escola Clara Teteu</option>
+			<option>Escola Modelo</option>
+			<option>Escola Duque de Caxias</option>
+			<option>Escola Maria de lurdes</option>
+		</select>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<a href="/listasecoes"> Listar seções</a>
+</div>
+	<!-- Atente-se para a ordem: primeiro jquery, depois locastyle, depois o JS do Bootstrap. -->
+	<script src="//www.google-analytics.com/analytics.js"></script>
+	<script type="text/javascript"
+		src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript"
+		src="//assets.locaweb.com.br/locastyle/2.0.6/javascripts/locastyle.js"></script>
+	<script type="text/javascript"
+		src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+</body>
+</html>

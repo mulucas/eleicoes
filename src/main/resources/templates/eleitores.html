@@ -1,0 +1,87 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<!-- Se estiver usando bootstrap, coloque o CSS do Locastyle logo após a sua chamada -->
+<link rel="stylesheet" type="text/css"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="//assets.locaweb.com.br/locastyle/2.0.6/stylesheets/locastyle.css">
+
+</head>
+<body>
+<div class="header">
+	<h1>Eleições 2020</h1>
+	<br>
+	</div>
+	<div th:each="p : ${secaoobj}">
+		<div>
+			<p>
+				ID:<span th:text="${p.id}"></span>
+			</p>
+			<p>
+				Numero da Secao:<span th:text="${p.numero}"></span>
+			</p>
+		</div>
+
+	</div>
+	<hr>
+	<br>
+	<div th:each="m : ${msg}">
+		<span th:text=${m} style="color: red;"></span>
+	</div>
+	<br>
+	<hr>
+	<div>
+		<form th:action="@{/addeleitor/{secaoid}(secaoid=${secaoobj.id})}"
+			method="post">
+			<div>
+				<label class="active" for="nome">Nome:</label> <input id="nome"
+					name="nome" class="validate">
+			</div>
+			<div>
+				<label class="active" for="numeroTitulo">Numero Titulo:</label> <input
+					id="numeroTitulo" name="numeroTitulo" class="validate">
+			</div>
+			<div>
+				<label class="active" for="numeroTitulo">Horario:</label> <input
+					id="horario" type="time" name="horario" class="validate">
+			</div>
+			<div class="box-actions">
+				<button type="submit" class="btn btn-primary">Enviar</button>
+				<button class="btn btn-danger">Cancelar</button>
+			</div>
+
+		</form>
+	</div>
+
+	<hr>
+
+	<table class="table ls-table">
+		<tr>
+			<th>Nome</th>
+			<th>Numero do titulo</th>
+			<th>Horario</th>
+		</tr>
+
+		<tr th:each="fone : ${eleitores}">
+			<td th:text="${fone.nome}"></td>
+			<td th:text="${fone.numeroTitulo}"></td>
+			<td th:text="${fone.horario}"></td>
+		</tr>
+
+	</table>
+
+	<!-- Atente-se para a ordem: primeiro jquery, depois locastyle, depois o JS do Bootstrap. -->
+	<script src="//www.google-analytics.com/analytics.js"></script>
+	<script type="text/javascript"
+		src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript"
+		src="//assets.locaweb.com.br/locastyle/2.0.6/javascripts/locastyle.js"></script>
+	<script type="text/javascript"
+		src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -2,16 +2,38 @@
 <html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<title>Insert title here</title>
+<style type="text/css">
+
+/* Header/Logo Title */
+.header {
+  padding: 10px;
+  text-align: center;
+  background: blue;
+  color: white;
+  font-size: 30px;
+}
+ .container {   
+        justify-content: center;
+        align-items: center
+}
+</style>
+</head>
+<!-- Se estiver usando bootstrap, coloque o CSS do Locastyle logo após a sua chamada -->
+<link rel="stylesheet" type="text/css"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+<title>Seções</title>
 </head>
 <body>
-<div class="header">
-	<h1>Eleições 2020</h1>
-	<br>
+	<div class="header">
+		<h1>Eleições 2020</h1>
+		<br>
 	</div>
-	<table class="striped">
+	 <div class="container">
+	<table class="table ls-table">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -23,6 +45,15 @@
 			<td> <a th:href="@{/eleitores/{idsecao}(idsecao=${secao.id})}"><span th:text="${secao.numero}"></span></a></td>
 		</tr>
 	</table>
+	</div>
+	<!-- Atente-se para a ordem: primeiro jquery, depois locastyle, depois o JS do Bootstrap. -->
+	<script src="//www.google-analytics.com/analytics.js"></script>
+	<script type="text/javascript"
+		src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript"
+		src="//assets.locaweb.com.br/locastyle/2.0.6/javascripts/locastyle.js"></script>
+	<script type="text/javascript"
+		src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 	
 </body>
 </html>

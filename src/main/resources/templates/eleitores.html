@@ -2,20 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<!-- Se estiver usando bootstrap, coloque o CSS do Locastyle logo após a sua chamada -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<style type="text/css">
+
+/* Header/Logo Title */
+.header {
+  padding: 10px;
+  text-align: center;
+  background: blue;
+  color: white;
+  font-size: 30px;
+}
+ .container {   
+        justify-content: center;
+        align-items: center
+}
+</style>
+</head>
+<!-- Se estiver usando bootstrap, coloque o CSS do Locastyle logo apÃ³s a sua chamada -->
 <link rel="stylesheet" type="text/css"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="//assets.locaweb.com.br/locastyle/2.0.6/stylesheets/locastyle.css">
 
 </head>
 <body>
 <div class="header">
-	<h1>Eleições 2020</h1>
+	<h1>EleiÃ§Ãµes 2020</h1>
 	<br>
 	</div>
+	 <div class="container">
 	<div th:each="p : ${secaoobj}">
 		<div>
 			<p>
@@ -28,11 +44,9 @@
 
 	</div>
 	<hr>
-	<br>
 	<div th:each="m : ${msg}">
 		<span th:text=${m} style="color: red;"></span>
 	</div>
-	<br>
 	<hr>
 	<div>
 		<form th:action="@{/addeleitor/{secaoid}(secaoid=${secaoobj.id})}"
@@ -73,7 +87,7 @@
 		</tr>
 
 	</table>
-
+</div>
 	<!-- Atente-se para a ordem: primeiro jquery, depois locastyle, depois o JS do Bootstrap. -->
 	<script src="//www.google-analytics.com/analytics.js"></script>
 	<script type="text/javascript"

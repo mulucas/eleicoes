@@ -16,20 +16,48 @@ import com.reserva.horario.eleicoes.models.Eleitor;
 import com.reserva.horario.eleicoes.models.Secao;
 import com.reserva.horario.eleicoes.repository.EleitorRepository;
 import com.reserva.horario.eleicoes.repository.SecaoRepository;
+import com.reserva.horario.eleicoes.validator.ValidarTituloEleitor;
 
 @Controller
 public class EleitorController {
-	
+
 	@Autowired
 	private SecaoRepository secaoRepository;
-	
+
 	@Autowired
 	private EleitorRepository eleitorRepository;
-	
+
 	@PostMapping("**/addeleitor/{secaoid}")
 	public ModelAndView addeleitor(@Valid Eleitor eleitor, @PathVariable("secaoid") Long secaoid) {
-		
-		
+		ModelAndView andView = new ModelAndView("eleitores");
+		Secao secao = secaoRepository.findById(secaoid).get();
+
+		if (ValidarTituloEleitor.ValidarTitulo(eleitor.getNumeroTitulo())) {
+
+			if (verificaQntdEleitores(eleitor)) {
+				eleitor.setSecao(secao);
+				eleitorRepository.save(eleitor);
+			} else {
+				andView.addObject("msg", "Esse horario ja esta com o numero de eleitores maximo permitido, por afvor escolha outro horario");
+			}
+		} else {
+			andView.addObject("msg", "titulo de eleitor informado incorretamente");
+		}
+		andView.addObject("secaoobj", secao);
+		andView.addObject("eleitores", eleitorRepository.getEleitores(secaoid));
+		return andView;
+	}
+
+	@GetMapping("/eleitores/{idsecao}")
+	public ModelAndView eleitores(@PathVariable("idsecao") Long idsecao) {
+		ModelAndView andView = new ModelAndView("eleitores");
+		Optional<Secao> secao = secaoRepository.findById(idsecao);
+		andView.addObject("eleitores", eleitorRepository.getEleitores(idsecao));
+		andView.addObject("secaoobj", secao.get());
+		return andView;
+	}
+
+	public boolean verificaQntdEleitores(Eleitor eleitor) {
 		List<String> lista = eleitorRepository.findProjects();
 		String horarioEleitor = eleitor.getHorario().substring(0, 2);
 		String horarioBd;
@@ -39,29 +67,10 @@ public class EleitorController {
 			if (horarioEleitor.equals(horarioBd)) {
 				contador++;
 			}
+			if (contador == 12) {
+				return false;
+			}
 		}
-		System.out.println(contador);
-		Secao secao = secaoRepository.findById(secaoid).get();
-		ModelAndView andView = new ModelAndView("eleitores");
-
-		if (contador<12) {
-			eleitor.setSecao(secao);;
-			eleitorRepository.save(eleitor);
-		}else {
-			andView.addObject("msg", "Esse horario ja esta com o numero de eleitores maximo permitido");
-		}
-
-		andView.addObject("secaoobj", secao);
-		andView.addObject("eleitores", eleitorRepository.getEleitores(secaoid));
-		return andView;
-	}
-	
-	@GetMapping("/eleitores/{idsecao}")
-	public ModelAndView eleitores(@PathVariable("idsecao") Long idsecao) {
-		ModelAndView andView = new ModelAndView("eleitores");
-		Optional<Secao> secao = secaoRepository.findById(idsecao);
-		andView.addObject("eleitores", eleitorRepository.getEleitores(idsecao));
-		andView.addObject("secaoobj", secao.get());
-		return andView;
+		return true;
 	}
 }

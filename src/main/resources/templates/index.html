@@ -1,23 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<style type="text/css">
-
-/* Header/Logo Title */
-.header {
-  padding: 50px;
-  text-align: center;
-  background: blue;
-  color: white;
-  font-size: 30px;
-}
- .container {   
-        justify-content: center;
-        align-items: center
-}
-</style>
+<link href="estilo.css" rel="stylesheet">
 </head>
 <!-- Se estiver usando bootstrap, coloque o CSS do Locastyle logo após a sua chamada -->
 <link rel="stylesheet" type="text/css"
@@ -25,56 +12,54 @@
 
 <body>
 	<div class="header">
-	<h1>Eleições 2020</h1>
-	<br>
+		<h1>Eleições 2020</h1>
+		<br>
 	</div>
-	
-	 <div class="container">
-	<h3>Selecione abaixo o estado, cidade e local da sua votação</h3>
-	<hr>
-	
-	<div class="form-group col-lg-4">
-		<label>Estado:</label> 
-		<select class="form-control" name="estado">
-		<option>Selecione</option>
-        <option th:each="estado : ${estados}"
-                th:value="${estado.id}"
-                th:text="${estado.nome}" />
-    </select>
+	<div class="container">
+			<h3>Selecione abaixo o estado, cidade e local da sua votação</h3>
+			<hr>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div class="form-group col-lg-4">
-		<label>Cidade:</label> 
-		<select class="form-control" name="cidade">
-		<option>Selecione</option>
-        <option th:each="cidade : ${cidades}"
-                th:value="${cidade.id}"
-                th:text="${cidade.nome}" />
-    </select>
-	</div>
-	<br>
-	<br>
-	<br>
-	<br>
+	<div class="row">
+		
+			<div class="side">
 
-	<div class="form-group col-lg-4">
-		<label>Local:</label> <select class="form-control">
-			<option>Selecione</option>
-			<option>Escola Clara Teteu</option>
-			<option>Escola Modelo</option>
-			<option>Escola Duque de Caxias</option>
-			<option>Escola Maria de lurdes</option>
-		</select>
+				<div class="form-group col-lg-12">
+					<label>Estado:</label> <select class="form-control" name="estado">
+						<option>Selecione</option>
+						<option th:each="estado : ${estados}" th:value="${estado.id}"
+							th:text="${estado.nome}" />
+					</select>
+				</div>
+				<br> <br> <br> <br>
+				<div class="form-group col-lg-12">
+					<label>Cidade:</label> <select class="form-control" name="cidade">
+						<option>Selecione</option>
+						<option th:each="cidade : ${cidades}" th:value="${cidade.id}"
+							th:text="${cidade.nome}" />
+					</select>
+				</div>
+				<br> <br> <br> <br>
+
+				<div class="form-group col-lg-12">
+					<label>Local:</label> <select class="form-control">
+						<option>Selecione</option>
+						<option>Escola Clara Teteu</option>
+						<option>Escola Modelo</option>
+						<option>Escola Duque de Caxias</option>
+						<option>Escola Maria de lurdes</option>
+					</select>
+				</div>
+				<br> <br> <br> <br> <a href="/listasecoes">
+					Listar seções</a>
+			</div>
+			 <div class="main">
+			 <img src="/urna.jpg" height="400px" class="fakeimg"> 
+			 </div>
+		</div>
+
+	<div class="footer">
+		<p>Brasil</p>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<a href="/listasecoes"> Listar seções</a>
-</div>
 	<!-- Atente-se para a ordem: primeiro jquery, depois locastyle, depois o JS do Bootstrap. -->
 	<script src="//www.google-analytics.com/analytics.js"></script>
 	<script type="text/javascript"

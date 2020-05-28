@@ -1,6 +1,6 @@
 package com.reserva.horario.eleicoes.validator;
 
-public class ValidarTituloEleitor {
+public class ValidarDados {
 
 	public static boolean ValidarTitulo(String strTitulo) {
 		if (strTitulo.length() < 12) {
@@ -51,4 +51,15 @@ public class ValidarTituloEleitor {
 		String strMid = texto.substring(inicio - 1, inicio + (tamanho - 1));
 		return strMid;
 	}
+	
+	public static boolean validarHorario(String hora) {
+		int horaInt = Integer.parseInt(hora.substring(0, 2));
+		if (horaInt < 8 || horaInt > 16) {
+			return false;
+		}
+		return true;
+	}
 }
+
+
+

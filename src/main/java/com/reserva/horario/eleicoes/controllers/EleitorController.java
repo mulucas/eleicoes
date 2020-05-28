@@ -16,7 +16,7 @@ import com.reserva.horario.eleicoes.models.Eleitor;
 import com.reserva.horario.eleicoes.models.Secao;
 import com.reserva.horario.eleicoes.repository.EleitorRepository;
 import com.reserva.horario.eleicoes.repository.SecaoRepository;
-import com.reserva.horario.eleicoes.validator.ValidarTituloEleitor;
+import com.reserva.horario.eleicoes.validator.ValidarDados;
 
 @Controller
 public class EleitorController {
@@ -31,8 +31,8 @@ public class EleitorController {
 	public ModelAndView addeleitor(@Valid Eleitor eleitor, @PathVariable("secaoid") Long secaoid) {
 		ModelAndView andView = new ModelAndView("eleitores");
 		Secao secao = secaoRepository.findById(secaoid).get();
-
-		if (ValidarTituloEleitor.ValidarTitulo(eleitor.getNumeroTitulo())) {
+		
+		if (ValidarDados.ValidarTitulo(eleitor.getNumeroTitulo()) && ValidarDados.validarHorario(eleitor.getHorario())) {
 
 			if (verificaQntdEleitores(eleitor)) {
 				eleitor.setSecao(secao);
@@ -41,7 +41,7 @@ public class EleitorController {
 				andView.addObject("msg", "Esse horario ja esta com o numero de eleitores maximo permitido, por afvor escolha outro horario");
 			}
 		} else {
-			andView.addObject("msg", "titulo de eleitor informado incorretamente");
+			andView.addObject("msg", "Por favor, confira se os dados informado abaixo estao corretos");
 		}
 		andView.addObject("secaoobj", secao);
 		andView.addObject("eleitores", eleitorRepository.getEleitores(secaoid));

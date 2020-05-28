@@ -2,24 +2,9 @@
 <html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<style type="text/css">
-
-/* Header/Logo Title */
-.header {
-  padding: 10px;
-  text-align: center;
-  background: blue;
-  color: white;
-  font-size: 30px;
-}
- .container {   
-        justify-content: center;
-        align-items: center
-}
-</style>
+<link href="estilo.css" rel="stylesheet">
 </head>
 <!-- Se estiver usando bootstrap, coloque o CSS do Locastyle logo após a sua chamada -->
 <link rel="stylesheet" type="text/css"
@@ -32,12 +17,16 @@
 		<h1>Eleições 2020</h1>
 		<br>
 	</div>
+	<div class="navbar">
+  <a href="/">Inicio</a>
+</div>
 	 <div class="container">
 	<table class="table ls-table">
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>Numero da Seção</th>
+				<th>Local</th>
 			</tr>
 		</thead>
 		<tr th:each="secao : ${secoes}">
@@ -45,6 +34,9 @@
 			<td> <a th:href="@{/eleitores/{idsecao}(idsecao=${secao.id})}"><span th:text="${secao.numero}"></span></a></td>
 		</tr>
 	</table>
+	</div>
+	<div class="footer">
+		<p>Brasil</p>
 	</div>
 	<!-- Atente-se para a ordem: primeiro jquery, depois locastyle, depois o JS do Bootstrap. -->
 	<script src="//www.google-analytics.com/analytics.js"></script>

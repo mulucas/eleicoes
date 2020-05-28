@@ -1,0 +1,77 @@
+@charset "ISO-8859-1";
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #ffff00;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #00ff00;
+  color: black;
+}
+
+/* Header/Logo Title */
+.header {
+	padding: 30px;
+	text-align: center;
+	background: blue;
+	color: white;
+	font-size: 30px;
+}
+
+.container {
+	justify-content: center;
+	align-items: center
+}
+
+/* Column container */
+.row {  
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+}
+/* Fake image, just for this example */
+.fakeimg {
+  width: 100%;
+  padding: 20px;
+}
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  -ms-flex: 40%; /* IE10 */
+  flex: 40%;
+  background-color: #f1f1f1;
+  padding: 60px;
+}
+
+/* Main column */
+.main {   
+  -ms-flex: 60%; /* IE10 */
+  flex: 60%;
+  background-color: white;
+  padding: 20px;
+}
+
+.footer {
+padding: 10px;
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: green;
+   color: white;
+   text-align: center;
+}

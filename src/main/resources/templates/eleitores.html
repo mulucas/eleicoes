@@ -2,24 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<style type="text/css">
-
-/* Header/Logo Title */
-.header {
-  padding: 10px;
-  text-align: center;
-  background: blue;
-  color: white;
-  font-size: 30px;
-}
- .container {   
-        justify-content: center;
-        align-items: center
-}
-</style>
+<link href="/estilo.css" rel="stylesheet">
 </head>
 <!-- Se estiver usando bootstrap, coloque o CSS do Locastyle logo após a sua chamada -->
 <link rel="stylesheet" type="text/css"
@@ -31,6 +16,9 @@
 	<h1>Eleições 2020</h1>
 	<br>
 	</div>
+	<div class="navbar">
+  <a href="/">Inicio</a>
+</div>
 	 <div class="container">
 	<div th:each="p : ${secaoobj}">
 		<div>
@@ -52,12 +40,12 @@
 		<form th:action="@{/addeleitor/{secaoid}(secaoid=${secaoobj.id})}"
 			method="post">
 			<div>
-				<label class="active" for="nome">Nome:</label> <input id="nome"
-					name="nome" class="validate">
+				<label class="active" for="nome">Nome:</label> 
+				<input id="nome" name="nome" class="validate">
 			</div>
 			<div>
-				<label class="active" for="numeroTitulo">Numero Titulo:</label> <input
-					id="numeroTitulo" name="numeroTitulo" class="validate">
+				<label class="active" for="numeroTitulo">Numero Titulo:</label> 
+				<input id="numeroTitulo" name="numeroTitulo" class="validate">
 			</div>
 			<div>
 				<label class="active" for="numeroTitulo">Horario:</label> <input
@@ -80,13 +68,16 @@
 			<th>Horario</th>
 		</tr>
 
-		<tr th:each="fone : ${eleitores}">
-			<td th:text="${fone.nome}"></td>
-			<td th:text="${fone.numeroTitulo}"></td>
-			<td th:text="${fone.horario}"></td>
+		<tr th:each="eleitor : ${eleitores}">
+			<td th:text="${eleitor.nome}"></td>
+			<td th:text="${eleitor.numeroTitulo}"></td>
+			<td th:text="${eleitor.horario}"></td>
 		</tr>
 
 	</table>
+	<div class="footer">
+		<p>Brasil</p>
+	</div>
 </div>
 	<!-- Atente-se para a ordem: primeiro jquery, depois locastyle, depois o JS do Bootstrap. -->
 	<script src="//www.google-analytics.com/analytics.js"></script>

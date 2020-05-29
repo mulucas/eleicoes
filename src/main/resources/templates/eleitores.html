@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="/estilo.css" rel="stylesheet">
 </head>
 <!-- Se estiver usando bootstrap, coloque o CSS do Locastyle logo após a sua chamada -->
@@ -18,50 +19,53 @@
 	</div>
 	<div class="navbar">
   <a href="/">Inicio</a>
+  <a href="/consultar">Consultar</a>
 </div>
-	 <div class="container">
+	<div class="containerConsulta">
+		<div class="boxConsulta">
 	<div th:each="p : ${secaoobj}">
 		<div>
 			<p>
 				ID:<span th:text="${p.id}"></span>
 			</p>
-			<p>
-				Numero da Secao:<span th:text="${p.numero}"></span>
+			<p style="color: black; font-size: large;">
+				O número da sua Secão é: <span th:text="${p.numero}"></span>
 			</p>
 		</div>
 
 	</div>
-	<hr>
 	<div th:each="m : ${msg}">
 		<span th:text=${m} style="color: red;"></span>
 	</div>
 	<hr>
 	<div>
 		<form th:action="@{/addeleitor/{secaoid}(secaoid=${secaoobj.id})}"
-			method="post">
+			method="post" class="w3-container w3-card-4">
+		<br>
 			<div>
 				<label class="active" for="nome">Nome:</label> 
-				<input id="nome" name="nome" class="validate">
+				<input id="nome" name="nome" class="w3-input w3-border">
 			</div>
 			<div>
 				<label class="active" for="numeroTitulo">Numero Titulo:</label> 
-				<input id="numeroTitulo" name="numeroTitulo" class="validate">
+				<input id="numeroTitulo" name="numeroTitulo" class="w3-input w3-border">
 			</div>
 			<div>
 				<label class="active" for="numeroTitulo">Horario:</label> <input
-					id="horario" type="time" name="horario" class="validate">
+					id="horario" type="time" name="horario" class="w3-input w3-border">
 			</div>
+			<br>
 			<div class="box-actions">
 				<button type="submit" class="btn btn-primary">Enviar</button>
 				<button class="btn btn-danger">Cancelar</button>
 			</div>
-
+		<br>
 		</form>
 	</div>
 
 	<hr>
 
-	<table class="table ls-table">
+	<!-- <table class="table ls-table">
 		<tr>
 			<th>Nome</th>
 			<th>Numero do titulo</th>
@@ -74,11 +78,11 @@
 			<td th:text="${eleitor.horario}"></td>
 		</tr>
 
-	</table>
+	</table>-->
 	<div class="footer">
 		<p>Brasil</p>
 	</div>
-</div>
+</div></div>
 	<!-- Atente-se para a ordem: primeiro jquery, depois locastyle, depois o JS do Bootstrap. -->
 	<script src="//www.google-analytics.com/analytics.js"></script>
 	<script type="text/javascript"

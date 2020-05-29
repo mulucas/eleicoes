@@ -20,6 +20,9 @@ public class Secao implements Serializable{
 	private Long id;
 	
 	private String numero;
+	
+	private String local;
+	
 
 	@OneToMany(mappedBy = "secao", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Eleitor> eleitores;
@@ -30,6 +33,14 @@ public class Secao implements Serializable{
 
 	public void setEleitores(List<Eleitor> eleitores) {
 		this.eleitores = eleitores;
+	}
+	
+	public String getLocal() {
+		return local;
+	}
+	
+	public void setLocal(String local) {
+		this.local = local;
 	}
 
 	public Long getId() {

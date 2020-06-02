@@ -26,14 +26,18 @@
 		<h3 align="center">Consultar</h3>
 	</div>
 
-	<form class="w3-container w3-card-4">
+	<form class="w3-container w3-card-4" action="consultarhorario" method="post">
+	<br>
+	<div style="color: red;" th:each = "m : ${msg}">
+		<span th:text = ${m}></span>
+	</div>
 	<br>
 		<p>
-			<label>Seção</label> <input placeholder="Informe a Seção"
+			<label>Titulo</label> <input placeholder="Informe seu Titulo" name="numTitulo"
 				class="w3-input w3-border" type="text">
 		</p>
 		<p>
-			<label>Titulo</label> <input placeholder="Informe o Titulo"
+			<label>Nome</label> <input placeholder="Informe o seu nome"  name="nomepesquisa"
 				class="w3-input w3-border" type="text">
 		</p>
 	

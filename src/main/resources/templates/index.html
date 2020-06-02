@@ -33,7 +33,8 @@
 				</div>
 				<br> <br> <br> <br>
 				<div class="form-group col-lg-12">
-					<label>Cidade:</label> <select class="form-control" name="cidade">
+					<label>Cidade:</label> 
+					<select class="form-control" name="cidade">
 						<option>Selecione</option>
 						<option th:each="cidade : ${cidades}" th:value="${cidade.id}"
 							th:text="${cidade.nome}" />
@@ -42,12 +43,11 @@
 				<br> <br> <br> <br>
 
 				<div class="form-group col-lg-12">
-					<label>Local:</label> <select class="form-control">
+					<label>Local:</label> 
+					<select class="form-control" name="local">
 						<option>Selecione</option>
-						<option>Escola Clara Teteu</option>
-						<option>Escola Modelo</option>
-						<option>Escola Duque de Caxias</option>
-						<option>Escola Maria de lurdes</option>
+						<option th:each="local : ${locais}" th:value="${local.id}"
+							th:text="${local.nome}" />
 					</select>
 				</div>
 				<br> <br> <br> <br> <a href="/listasecoes">

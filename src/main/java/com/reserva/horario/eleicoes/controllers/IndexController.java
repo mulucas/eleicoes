@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.reserva.horario.eleicoes.models.Estado;
+import com.reserva.horario.eleicoes.models.Local;
 import com.reserva.horario.eleicoes.models.Municipio;
 import com.reserva.horario.eleicoes.repository.EstadoRepository;
+import com.reserva.horario.eleicoes.repository.LocalRepository;
 import com.reserva.horario.eleicoes.repository.MunicipioRepository;
 
 @Controller
@@ -19,6 +21,9 @@ public class IndexController {
 	@Autowired
 	MunicipioRepository cidadeRepository;
 	
+	@Autowired
+	LocalRepository localRepository;
+	
 	@RequestMapping("/")
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView("index");
@@ -27,6 +32,9 @@ public class IndexController {
 		
 		Iterable<Municipio> cidadeIt = cidadeRepository.findAll();
 		modelAndView.addObject("cidades", cidadeIt);
+		
+		Iterable<Local> localIt = localRepository.findAll();
+		modelAndView.addObject("locais", localIt);
 		
 		return modelAndView;
 	}

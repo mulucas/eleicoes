@@ -17,4 +17,10 @@ public interface EleitorRepository extends CrudRepository<Eleitor, Long>{
 	@Query(value = FIND_PROJECTS, nativeQuery = true)
 	public List<String> findProjects();
 	
+	@Query("select e from Eleitor e where e.nome like %?1%")
+	Eleitor findEleitorByNome(String nome);
+	
+	@Query("select e from Eleitor e where e.numeroTitulo like %?1%")
+	Eleitor findEleitorByTitulo(String numTitulo);
+	
 }

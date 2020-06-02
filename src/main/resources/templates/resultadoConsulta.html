@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="estilo.css" rel="stylesheet">
+</head>
+<!-- Se estiver usando bootstrap, coloque o CSS do Locastyle logo após a sua chamada -->
+<link rel="stylesheet" type="text/css"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="header">
+		<h1>Eleições 2020</h1>
+		<br>
+	</div>
+	<table  class="w3-table">
+		<thead>
+			<tr  class="w3-yellow">
+				<th>Nome</th>
+				<th>Número do Titulo</th>
+				<th>Seção</th>
+				<th>Horário Marcado</th>
+				<th>Editar</th>
+			</tr>
+		</thead>
+		<tr th:each="eleitor : ${pessoas}">
+			<td th:text="${eleitor.nome}"></td>
+			<td th:text="${eleitor.numeroTitulo}"></td>
+			<td th:text="${eleitor.secao.numero}"></td>
+			<td th:text="${eleitor.horario}"></td>
+			<td><a
+				th:href="@{/editareleitor/{ideleitor}(ideleitor=${eleitor.id})}">Editar
+					Horário</a></td>
+		</tr>
+	</table>
+	<br>
+	<a href="/">Voltar ao inicio</a>
+	<div class="footer">
+		<p>Brasil</p>
+	</div>
+</body>
+</html>
